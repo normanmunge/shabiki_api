@@ -7,4 +7,5 @@ urlpatterns = [
     path('getuserqryview', views.getuserqryview),
     path('showform/', views.showform, name="showform"),
     path('getform/', views.getform, name="getform"),
+    path('getuserform/', view=views.getuserform, name="getuserform")
 ]

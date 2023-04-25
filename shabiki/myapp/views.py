@@ -1,6 +1,8 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 # Create your views here.
+
+from . import forms;
 
 def home(request):
     path = request.path
@@ -40,3 +42,15 @@ def getform(request):
         id = request.POST['id']
         name = request.POST['name']
     return HttpResponse("Name: {} <br> UserId: {}".format(name,id))
+
+def getuserform(request):
+    if request.method == "POST":
+        form = forms.DemoForm(request.POST)
+
+        if form.is_valid():
+            return HttpResponseRedirect('/getuserform/')
+    else:
+        form = forms.DemoForm()
+    
+    return render(request, "form_example.html", {"form": form})
+        
